@@ -244,6 +244,43 @@ function Dashboard() {
                         Cerrar sesión
                     </button>
                 </div>
+                <button
+                    className="logout-button"
+                    onClick={async () => {
+                        const nuevaPassword = window.prompt(
+                            'Escribe tu nueva contraseña'
+                        )
+
+                        if (!nuevaPassword) return
+
+                        const confirmar = window.prompt(
+                            'Vuelve a escribir la nueva contraseña'
+                        )
+
+                        if (nuevaPassword !== confirmar) {
+                            window.alert('Las contraseñas no coinciden.')
+                            return
+                        }
+
+                        const { error } = await supabase.auth.updateUser({
+                            password: nuevaPassword,
+                        })
+
+                        if (error) {
+                            console.error(error)
+                            window.alert(
+                                'No se pudo cambiar la contraseña: ' + error.message
+                            )
+                            return
+                        }
+
+                        window.alert(
+                            'Contraseña cambiada correctamente.'
+                        )
+                    }}
+                >
+                    Cambiar contraseña
+                </button>
             </header>
 
             <main className="dashboard-content">

@@ -660,7 +660,7 @@ function Servicio() {
       <div style={resumenGrid}>
         <div className="service-summary-card">
           <span>
-            Precio actual
+            Precio actual 
           </span>
 
           <strong>
